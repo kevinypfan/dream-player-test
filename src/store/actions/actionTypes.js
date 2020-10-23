@@ -1,0 +1,4 @@
+export const TOGGLE_DRAWER = "TOGGLE_DRAWER";
+
+export const LOAD_MESSAGES = "LOAD_MESSAGES";
+export const SELECTED_MESSAGE = "SELECTED_MESSAGE";
