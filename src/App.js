@@ -11,7 +11,7 @@ import {
 import AppBar from "./components/AppBar";
 import Drawer from "./components/Drawer";
 import Comment from "./views/Comment";
-import Message from "./views/Message";
+import MessageMenu from "./views/MessageMenu";
 import UploadImage from "./views/UploadImage";
 import Home from "./views/Home";
 
@@ -25,7 +25,7 @@ export default function App() {
           <Comment />
         </Route>
         <Route path="/message">
-          <Message />
+          <MessageMenu />
         </Route>
         <Route path="/upload-image">
           <UploadImage />

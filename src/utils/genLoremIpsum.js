@@ -1,6 +1,7 @@
 import { loremIpsum } from "lorem-ipsum";
 import randomDate from "random-datetime";
 import moment from "moment";
+import { v4 as uuidv4 } from "uuid";
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
@@ -13,6 +14,7 @@ export const genMessages = () => {
     const description = loremIpsum({ units: "sentences" });
     const article = loremIpsum({ units: "paragraphs" });
     messages.push({
+      id: uuidv4(),
       title,
       description,
       article,

@@ -8,9 +8,9 @@ export const loadMessages = () => {
   };
 };
 
-export const selectedMessage = (selectedIndex) => {
+export const selectedMessage = (selectedId) => {
   return {
     type: actionTypes.SELECTED_MESSAGE,
-    selectedIndex,
+    selectedId,
   };
 };

@@ -1,14 +1,14 @@
 import { updateObject } from "../../shared/utility";
 import * as actionTypes from "../actions/actionTypes";
 
-const initState = { items: [], selectedIndex: null };
+const initState = { items: [], selectedId: null };
 
 const loadMessages = (state, action) => {
   return updateObject(state, { items: action.items });
 };
 
 const selectedMessage = (state, action) => {
-  return updateObject(state, { selectedIndex: action.selectedIndex });
+  return updateObject(state, { selectedId: action.selectedId });
 };
 
 const reducer = (state = initState, action) => {
