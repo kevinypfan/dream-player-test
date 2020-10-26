@@ -36,3 +36,17 @@ export const replyComment = (commentId, reply) => {
     reply,
   };
 };
+
+export const setSelectedReplyId = (commentId) => {
+  return {
+    type: actionTypes.SET_SELECTED_REPLY_ID,
+    commentId,
+  };
+};
+
+export const setSelectedDeleteId = (commentId) => {
+  return {
+    type: actionTypes.SET_SELECTED_DELETE_ID,
+    commentId,
+  };
+};

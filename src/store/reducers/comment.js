@@ -1,7 +1,7 @@
 import { updateObject } from "../../shared/utility";
 import * as actionTypes from "../actions/actionTypes";
 
-const initState = { items: [] };
+const initState = { items: [], selectedReplyId: null, selectedDeleteId: null };
 
 const setComment = (state, action) => {
   return updateObject(state, { items: action.items });
@@ -17,9 +17,22 @@ const deleteComment = (state, { commentId }) => {
 };
 
 const replyComment = (state, { commentId, reply }) => {
-  const item = state.items.find((item) => item.id === commentId);
-  item.replies = item.reply.concat(reply);
-  return updateObject(state, state.items);
+  const items = state.items.map((item) => {
+    if (item.id === commentId) {
+      item.replies = item.replies.concat(reply);
+    }
+    return item;
+  });
+
+  return updateObject(state, { items });
+};
+
+const setSelectedReplyId = (state, { commentId }) => {
+  return updateObject(state, { selectedReplyId: commentId });
+};
+
+const setSelectedDeleteId = (state, { commentId }) => {
+  return updateObject(state, { selectedDeleteId: commentId });
 };
 
 const reducer = (state = initState, action) => {
@@ -32,6 +45,10 @@ const reducer = (state = initState, action) => {
       return deleteComment(state, action);
     case actionTypes.REPLY_COMMENT:
       return replyComment(state, action);
+    case actionTypes.SET_SELECTED_REPLY_ID:
+      return setSelectedReplyId(state, action);
+    case actionTypes.SET_SELECTED_DELETE_ID:
+      return setSelectedDeleteId(state, action);
     default:
       return state;
   }

@@ -8,4 +8,6 @@ export {
   deleteComment,
   replyComment,
   addComment,
+  setSelectedReplyId,
+  setSelectedDeleteId,
 } from "./comment";

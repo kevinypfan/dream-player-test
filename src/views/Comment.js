@@ -45,10 +45,8 @@ function Comment() {
   };
 
   useEffect(() => {
-    if (comments.length === 0) {
-      loadComments();
-    }
-  }, [loadComments, comments]);
+    loadComments();
+  }, [loadComments]);
   return (
     <Container>
       <Box p={{ xs: 1, sm: 2 }} bgcolor="white">
