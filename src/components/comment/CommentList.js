@@ -1,33 +1,9 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
-import {
-  Grid,
-  Button,
-  TextField,
-  Avatar,
-  Box,
-  Hidden,
-  Paper,
-  Container,
-  Typography,
-  Divider,
-} from "@material-ui/core";
+import { Grid, Box, Paper, Divider } from "@material-ui/core";
 import CommentItem from "./CommentItem";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-    // maxWidth: "36ch",
-    backgroundColor: theme.palette.background.paper,
-  },
-  inline: {
-    display: "inline",
-  },
-}));
-
 export default function AlignItemsList() {
-  const classes = useStyles();
   const comments = useSelector((state) => state.comment.items);
 
   const CommentComponent = (comment) => {
@@ -36,14 +12,17 @@ export default function AlignItemsList() {
         <Grid container justify="flex-end">
           <Grid item xs={12}>
             <CommentItem comment={comment} />
-            <Divider />
+            <Box p={{ xs: 1, sm: 2 }}>
+              <Divider />
+            </Box>
           </Grid>
 
           {comment.replies.map((reply) => {
             return (
               <Grid item xs={11} key={reply.id}>
-                <Box>
-                  <CommentItem comment={reply} />
+                <CommentItem comment={reply} />
+                <Box p={{ xs: 1, sm: 2 }}>
+                  <Divider />
                 </Box>
               </Grid>
             );
@@ -65,5 +44,9 @@ export default function AlignItemsList() {
     }
   };
 
-  return <Grid container>{mainComponentBuilder()}</Grid>;
+  return (
+    <Box style={{ height: "500px", overflowY: "auto" }}>
+      {mainComponentBuilder()}
+    </Box>
+  );
 }

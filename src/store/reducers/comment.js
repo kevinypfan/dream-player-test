@@ -8,7 +8,7 @@ const setComment = (state, action) => {
 };
 
 const addComment = (state, action) => {
-  return updateObject(state, { items: action.items.concat(action.comment) });
+  return updateObject(state, { items: state.items.concat(action.comment) });
 };
 
 const deleteComment = (state, { commentId }) => {

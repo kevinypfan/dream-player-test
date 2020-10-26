@@ -8,6 +8,13 @@ export const loadComments = () => {
   };
 };
 
+export const addComment = (comment) => {
+  return {
+    type: actionTypes.ADD_COMMENT,
+    comment,
+  };
+};
+
 export const setComment = (items) => {
   return {
     type: actionTypes.SET_COMMENT,

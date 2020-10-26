@@ -1,15 +1,5 @@
 import React from "react";
-import {
-  Grid,
-  Button,
-  TextField,
-  Avatar,
-  Box,
-  Hidden,
-  Paper,
-  Container,
-  Typography,
-} from "@material-ui/core";
+import { Grid, Avatar, Container, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({

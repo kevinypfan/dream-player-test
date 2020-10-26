@@ -6,7 +6,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams, useHistory, useRouteMatch } from "react-router-dom";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 

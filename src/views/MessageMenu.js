@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Grid, Container, Hidden, Paper } from "@material-ui/core";
+import { Grid, Container, Paper } from "@material-ui/core";
 import MessageList from "../components/message/MessageList";
 import MessageDetail from "../components/message/MessageDetail";
 import * as actions from "../store/actions/index";

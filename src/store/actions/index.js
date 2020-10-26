@@ -7,4 +7,5 @@ export {
   setComment,
   deleteComment,
   replyComment,
+  addComment,
 } from "./comment";

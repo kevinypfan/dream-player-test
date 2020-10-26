@@ -1,77 +1,37 @@
 import React from "react";
-import {
-  Grid,
-  Button,
-  TextField,
-  Avatar,
-  Box,
-  Hidden,
-  Paper,
-  Container,
-  Typography,
-} from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    "& > *": {
-      margin: theme.spacing(1),
-    },
-  },
-  small: {
-    width: theme.spacing(3),
-    height: theme.spacing(3),
-  },
-  large: {
-    width: theme.spacing(6),
-    height: theme.spacing(6),
-  },
-  smallPadding: {
-    padding: "8px",
-  },
-  largePadding: {
-    padding: "16px",
-  },
-}));
+import { Grid, Avatar, Box, Typography } from "@material-ui/core";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 function CommentItem({ comment }) {
-  const classes = useStyles();
+  const matches = useMediaQuery("(min-width:640px)");
   return (
-    <Container className={classes.largePadding}>
+    <Box>
       <Grid container alignItems="center" justify="center">
-        <Grid item xs={1}>
-          <Grid container justify="flex-end">
-            <Avatar
-              style={{ height: "2.5em", width: "2.5em" }}
-              variant="rounded"
-              style={{ margin: "8px 16px" }}
-              src={comment.picture}
-            />
-            {/* <Avatar
-              variant="rounded"
-              className={classes.large}
-              style={{ padding: "8px 16px" }}
-            /> */}
+        <Grid item xs={2} sm={1} md={1}>
+          <Grid container justify="flex-end" alignItems="baseline">
+            <Box mr={{ xs: 1, sm: 2, md: 2 }} mt={{ xs: 0, sm: 1, md: 1 }}>
+              <Avatar
+                style={{
+                  height: matches ? "2.4em" : "2.2em",
+                  width: matches ? "2.4em" : "2.2em",
+                }}
+                variant="rounded"
+                src={comment.picture}
+              />
+            </Box>
           </Grid>
         </Grid>
-        <Grid item xs={11}>
-          <Typography variant="subtitle1" component="h3">
-            {comment.name}
-          </Typography>
-          <Typography variant="body2" component="h3">
-            {comment.timestamp}
-          </Typography>
+        <Grid item xs={10} sm={11} md={11}>
+          <Typography variant="h6">{comment.name}</Typography>
+          <Typography variant="overline">{comment.timestamp}</Typography>
         </Grid>
       </Grid>
       <Grid container justify="flex-end">
-        <Grid item xs={11}>
-          <Typography variant="body1" component="h3">
-            {comment.content}
-          </Typography>
+        <Grid item xs={10} sm={11} md={11}>
+          <Typography variant="body1">{comment.content}</Typography>
         </Grid>
       </Grid>
-    </Container>
+    </Box>
   );
 }
 

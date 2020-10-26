@@ -1,13 +1,5 @@
 import React, { useState, useRef } from "react";
-import {
-  Grid,
-  Container,
-  Hidden,
-  Paper,
-  Button,
-  Typography,
-  Box,
-} from "@material-ui/core";
+import { Container, Paper, Button, Typography, Box } from "@material-ui/core";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 import { makeStyles } from "@material-ui/core/styles";
 

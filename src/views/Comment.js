@@ -1,50 +1,48 @@
 import { Container, Divider } from "@material-ui/core";
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState, useRef } from "react";
 import {
   Grid,
   Button,
   TextField,
   Avatar,
   Box,
-  Hidden,
-  Paper,
   Typography,
 } from "@material-ui/core";
-import styled from "styled-components";
 import CommentList from "../components/comment/CommentList";
 import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../store/actions/index";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import moment from "moment";
+import { v4 as uuidv4 } from "uuid";
 
-const Section = styled.div`
-  width: 100%;
-  height: 600px;
-  background-color: white;
-  margin-top: 16px;
-  border-radius: 16px;
-  box-sizing: border-box;
-  padding: 16px;
-  display: block;
-  padding: 1em 2em;
-`;
-
-import { makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles((theme) => ({
-  smallPadding: {
-    padding: "8px",
-  },
-  largePadding: {
-    padding: "16px",
-  },
-}));
+// moment.format("YYYY-MM-DD");
 
 function Comment() {
+  const matches = useMediaQuery("(min-width:640px)");
+  const [user, setUser] = useState({
+    name: "kevinypfan",
+    picture:
+      "https://profile.line-scdn.net/0h-tvHALWncltLMV6Ox9gNDHd0fDY8H3QTMwVuOmsxfGtjCDFYJFU0NGo4fDxnADIMcwA0bT41f20ys",
+  });
+  const inputContentRef = useRef(null);
+
   const comments = useSelector((state) => state.comment.items);
   const dispatch = useDispatch();
   const loadComments = useCallback(() => dispatch(actions.loadComments()), [
     dispatch,
   ]);
-  console.log(comments);
+
+  const sendComment = () => {
+    dispatch(
+      actions.addComment({
+        id: uuidv4(),
+        ...user,
+        content: inputContentRef.current.value,
+        timestamp: moment().format("YYYY-MM-DD"),
+        replies: [],
+      })
+    );
+  };
 
   useEffect(() => {
     if (comments.length === 0) {
@@ -53,11 +51,11 @@ function Comment() {
   }, [loadComments, comments]);
   return (
     <Container>
-      <Box>
+      <Box p={{ xs: 1, sm: 1, sm: 2 }} bgcolor="white">
         <Grid container justify="space-between">
           <Grid item>
             <Typography variant="body2" component="h3">
-              5 則留言
+              {comments.length} 則留言
             </Typography>
           </Grid>
           <Grid item>
@@ -71,30 +69,32 @@ function Comment() {
         <Grid container>
           <Grid
             item
-            xs={1}
+            xs={2}
+            sm={1}
             style={{
               display: "flex",
-              marginTop: "8px",
               justifyContent: "center",
             }}
           >
             <Avatar
-              style={{ height: "2.5em", width: "2.5em" }}
               variant="rounded"
-              src={
-                "https://profile.line-scdn.net/0h-tvHALWncltLMV6Ox9gNDHd0fDY8H3QTMwVuOmsxfGtjCDFYJFU0NGo4fDxnADIMcwA0bT41f20ys"
-              }
+              src={user.picture}
+              style={{
+                height: matches ? "2.4em" : "2.2em",
+                width: matches ? "2.4em" : "2.2em",
+              }}
             />
           </Grid>
 
-          <Grid item xs={11}>
+          <Grid item sm={11} xs={10}>
             <TextField
               id="outlined-multiline-static"
               multiline
               fullWidth
               rows={3}
-              defaultValue="Default Value"
               variant="outlined"
+              placeholder="留下你的留言"
+              inputRef={inputContentRef}
             />
             <Grid
               container
@@ -104,12 +104,16 @@ function Comment() {
             >
               <Grid item>
                 <Typography variant="body2" component="h3">
-                  使用者名稱 - kevinypfan
+                  使用者名稱 - {user.name}
                 </Typography>
               </Grid>
               <Grid item>
-                <Button variant="outlined" color="primary">
-                  Primary
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  onClick={sendComment}
+                >
+                  發送留言
                 </Button>
               </Grid>
             </Grid>
@@ -118,10 +122,8 @@ function Comment() {
 
         <Divider style={{ margin: "0.8em 0" }}></Divider>
         <Grid container>
-          <Grid item xs={12} style={{ overflowY: "auto" }}>
-            <Paper>
-              <CommentList />
-            </Paper>
+          <Grid item xs={12}>
+            <CommentList />
           </Grid>
         </Grid>
       </Box>
