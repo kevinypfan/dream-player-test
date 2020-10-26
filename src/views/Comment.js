@@ -51,7 +51,7 @@ function Comment() {
   }, [loadComments, comments]);
   return (
     <Container>
-      <Box p={{ xs: 1, sm: 1, sm: 2 }} bgcolor="white">
+      <Box p={{ xs: 1, sm: 2 }} bgcolor="white">
         <Grid container justify="space-between">
           <Grid item>
             <Typography variant="body2" component="h3">

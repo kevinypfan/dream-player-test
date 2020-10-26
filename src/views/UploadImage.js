@@ -27,6 +27,10 @@ function UploadImage() {
     inputRef.current.click();
   };
 
+  const onFileUpload = (event) => {
+    console.log("upload: " + selectedFile);
+  };
+
   const onFileChange = (event) => {
     // Update the state
     console.log(event.target.files[0]);
@@ -36,7 +40,7 @@ function UploadImage() {
   return (
     <Container>
       <Paper style={{ maxHeight: "100vh", overflow: "auto", padding: "16px" }}>
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="primary" onClick={onFileUpload}>
           上傳圖片
         </Button>
         <input
@@ -46,10 +50,12 @@ function UploadImage() {
           hidden
           onChange={onFileChange}
         />
+        <Box my={2}>
+          <Typography variant="h6" component="p">
+            檔案名稱： {selectedFile && selectedFile.name}
+          </Typography>
+        </Box>
 
-        <Typography variant="body2" component="p">
-          檔案名稱： {selectedFile && selectedFile.name}
-        </Typography>
         <Paper
           variant="outlined"
           onClick={onUploadClick}

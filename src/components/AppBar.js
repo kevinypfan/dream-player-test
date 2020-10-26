@@ -16,7 +16,7 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import * as actions from "../store/actions/index";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -94,7 +94,7 @@ export default function PrimarySearchAppBar() {
     ) {
       return;
     }
-     dispatch(actions.toggleDrawer(open));
+    dispatch(actions.toggleDrawer(open));
   };
 
   const [anchorEl, setAnchorEl] = React.useState(null);

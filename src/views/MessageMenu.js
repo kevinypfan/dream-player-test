@@ -22,7 +22,7 @@ function MessageMenu() {
       loadMessages();
       history.push("/message");
     }
-  }, [loadMessages, messages]);
+  }, [loadMessages, messages, history]);
 
   return (
     <Container maxWidth="md" disableGutters>

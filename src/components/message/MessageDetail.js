@@ -32,7 +32,7 @@ export default function MessageDetail() {
   const { items: messages } = useSelector((state) => state.message);
   let { id } = useParams();
   let history = useHistory();
-  let { path, url } = useRouteMatch();
+  let { url } = useRouteMatch();
   const matches = useMediaQuery("(min-width:600px)");
   console.log(matches);
 
@@ -49,8 +49,8 @@ export default function MessageDetail() {
           <Typography variant="h5" component="h2">
             {message.title}
           </Typography>
-
-          <Typography variant="body2" component="p">
+          <br />
+          <Typography variant="body1" component="p">
             {message.article}
           </Typography>
         </CardContent>
