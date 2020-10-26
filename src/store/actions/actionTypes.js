@@ -1,4 +1,9 @@
 export const TOGGLE_DRAWER = "TOGGLE_DRAWER";
 
-export const LOAD_MESSAGES = "LOAD_MESSAGES";
+export const SET_MESSAGE = "SET_MESSAGE";
 export const SELECTED_MESSAGE = "SELECTED_MESSAGE";
+
+export const SET_COMMENT = "SET_COMMENT";
+export const ADD_COMMENT = "ADD_COMMENT";
+export const DELETE_COMMENT = "DELETE_COMMENT";
+export const REPLY_COMMENT = "REPLY_COMMENT";

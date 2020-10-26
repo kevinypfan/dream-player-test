@@ -8,10 +8,10 @@ import { useRouteMatch, Switch, Route, useHistory } from "react-router-dom";
 
 function MessageMenu() {
   const { items: messages, selectedId } = useSelector((state) => state.message);
+  const dispatch = useDispatch();
   console.log(messages);
   let { path, url } = useRouteMatch();
   console.log({ path, url });
-  const dispatch = useDispatch();
   const loadMessages = useCallback(() => dispatch(actions.loadMessages()), [
     dispatch,
   ]);

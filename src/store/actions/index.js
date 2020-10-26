@@ -1,3 +1,10 @@
 export { toggleDrawer } from "./app";
 
-export { loadMessages, selectedMessage } from "./message";
+export { loadMessages, selectedMessage, setMessage } from "./message";
+
+export {
+  loadComments,
+  setComment,
+  deleteComment,
+  replyComment,
+} from "./comment";

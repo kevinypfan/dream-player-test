@@ -27,40 +27,47 @@ const useStyles = makeStyles((theme) => ({
     width: theme.spacing(6),
     height: theme.spacing(6),
   },
+  smallPadding: {
+    padding: "8px",
+  },
+  largePadding: {
+    padding: "16px",
+  },
 }));
 
-function Home() {
+function CommentItem({ comment }) {
   const classes = useStyles();
   return (
-    <Container>
+    <Container className={classes.largePadding}>
       <Grid container alignItems="center" justify="center">
         <Grid item xs={1}>
           <Grid container justify="flex-end">
             <Avatar
+              style={{ height: "2.5em", width: "2.5em" }}
+              variant="rounded"
+              style={{ margin: "8px 16px" }}
+              src={comment.picture}
+            />
+            {/* <Avatar
               variant="rounded"
               className={classes.large}
               style={{ padding: "8px 16px" }}
-              src="https://profile.line-scdn.net/0h-tvHALWncltLMV6Ox9gNDHd0fDY8H3QTMwVuOmsxfGtjCDFYJFU0NGo4fDxnADIMcwA0bT41f20y"
-            />
+            /> */}
           </Grid>
         </Grid>
         <Grid item xs={11}>
           <Typography variant="subtitle1" component="h3">
-            KevinFan
+            {comment.name}
           </Typography>
           <Typography variant="body2" component="h3">
-            2020-10-30 23:22:12
+            {comment.timestamp}
           </Typography>
         </Grid>
       </Grid>
       <Grid container justify="flex-end">
-        <Grid item xs={11} justify="flex-end">
+        <Grid item xs={11}>
           <Typography variant="body1" component="h3">
-            本篇介紹如何在 Linux 系統上使用 crontab
-            工作排程，設定讓系統定時自動執行指定的指令或程式。 Linux
-            的管理者或使用者如果需要定期執行某些指令或程式，最常見的方式就是使用
-            cron 來幫忙管理例行性工作排程，只要設定好 crontab
-            設定檔之後，系統就會自動依照設定的時間，定期執行重複性的工作。
+            {comment.content}
           </Typography>
         </Grid>
       </Grid>
@@ -68,4 +75,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default CommentItem;

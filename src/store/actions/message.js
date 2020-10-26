@@ -2,9 +2,16 @@ import * as actionTypes from "./actionTypes";
 import { genMessages } from "../../utils/genLoremIpsum";
 
 export const loadMessages = () => {
+  return async (dispatch) => {
+    const messages = await genMessages();
+    dispatch(setMessage(messages));
+  };
+};
+
+export const setMessage = (items) => {
   return {
-    type: actionTypes.LOAD_MESSAGES,
-    items: genMessages(),
+    type: actionTypes.SET_MESSAGE,
+    items,
   };
 };
 
